@@ -44,7 +44,12 @@ class CaptchaUtils(object):
         draw = Draw(image)
         x1 = random.randint(0, w)
         y1 = random.randint(0, h)
-        draw.line((x1, y1, x1 - 1, y1 - 1), fill=color, width=width)
+
+        x2 = random.randint(0, w)
+        y2 = random.randint(0, h)
+        # print((x1, y1, x1 - 1, y1 - 1))
+        # draw.line((x1, y1, x1 - 1, y1 - 1), fill=color, width=width)
+        draw.line((x1, y1, x1, y1), fill=color)
 
     @staticmethod
     def get_rgb(color_hex, op=None):

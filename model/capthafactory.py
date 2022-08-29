@@ -3,7 +3,8 @@ import os
 
 from model.utils import CaptchaUtils
 
-from model.captcha import Captcha
+# from model.captcha import Captcha
+from model.captcha_wyx import Captcha
 
 
 class CaptchaFactory(object):

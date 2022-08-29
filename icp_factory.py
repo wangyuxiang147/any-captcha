@@ -4,6 +4,7 @@
 target captcha url: http://www.miitbeian.gov.cn/getVerifyCode?4
 """
 import json
+import time
 
 from model.capthafactory import CaptchaFactory
 
@@ -29,13 +30,23 @@ def main():
     #     specific = json.load(fp)
 
     demo_factory = CaptchaFactory(char_custom_fns=[custom_fn], bg_custom_fns=[bg_custom_fn], **demo_config)
-    number = 3
+    number = 5
     while number:
         # captcha = demo_factory.generate_captcha(specific_chars=specific)
         captcha = demo_factory.generate_captcha()
-        captcha.save("output/%s/%s.jpg" % (project_name, captcha.text))
-        print(captcha.text, captcha.num)
+        # captcha.save("output/%s/%s.jpg" % (project_name, captcha.text))
+        # captcha.save(f"C:/Users/Ad/Desktop/verification_code/6_code/{captcha.text}_{int(time.time()*1000)}.jpg")
+        # file_path = f"C:/Users/Ad/Desktop/verification_code/4_code/{captcha.text}_{int(time.time() * 1000)}.jpg"
 
+        # captcha.save(file_path)
+
+        # --add---
+        img = captcha.captcha.convert("L")
+        file_path = f"C:/Users/Ad/Desktop/verification_code/4_code/{captcha.text}_{int(time.time() * 1000)}.gif"
+        captcha.captcha.save(file_path, format='GIF')
+        # --add---
+
+        print(captcha.text, captcha.num)
         number -= 1
 
 
